@@ -3,12 +3,27 @@ layout: default
 title: Sonicdot
 ---
 <div class="blurb">
-	<h1>Sonicdot</h1>
-	<p>This work aims to apply what audio scene analysis teaches us in order to synthesize
-		a particular auditory scene: we want a listener to perceive a sound as intended but only
-		at some designated point in the room. As soon as they move to a different position,
-		the signal becomes unintelligible.</p>
-	<p>Work by Yu-Jeh Liu,  <a href="https://jmcasebeer.github.io/">Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
+	<h3>BAMBOOZLING ECHOES: MULTIPATH-ENABLED PRIVATE AUDIO</h3>
+	<p>We describe a private audio messaging system with a small number of loudspeakers. Our proposed method makes it hard for eavesdroppers to snoop. The method is based on a cartoonish principle of chopping sound up in short segments and emitting different segments in different directions from different loudspeakers. Standard soundfield reproduction methods that emit filtered versions of desired signals produce coherent loudspeaker emissions which when listened to reveal all intended messages. They are also hobbled by echoes. Our proposed method can only work in the presence of echoes. The best thing of all is that it in fact works in real listening situations. In the spirit of reproducible research, the paper is accompanied by the full code to reproduce the results in any room together with the used sounds.</p>
+	<p>Work by Yu-Jeh Liu, <a href="https://jmcasebeer.github.io/"> Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
+	<p>Consider the following communication problem: using a set of loudspeakers we want to transmit an audio message to Jane located at point A and another audio message to John at point B. Jane should not be able to understand John's message, and John should not understand Jane's. Additionally, no one else in the room should understand either message.</p>
+	<p>This problem is related to private sound zones and soundfield control / reproduction. Unlike the classical private sound zones problem, though, we place particular emphasis on the message not being intelligible by anyone but its intended recipient.</p>
+	<p>We now perform a thought experiment: imagine that we divide the message waveform intended for John into short bursts of sound and then assign different bursts to different loudspeakers, effectively emitting each segment in a different direction from a different point in space. Is it possible to somehow cleverly delay and filter those short bursts of sound so that at the intended listening point (in this case point A), with the help of echoes, the segments neatly align to form the desired message. Away from A, however, the segments arrive in a disordered, haphazard manner, rendering the superposition signal unintelligible.
+	</p>
+	<p>In this paper we show that this is indeed possible, and we analyze why it works. We show that, surprisingly, performance can be improved if instead of emitting short segments of the intended message, we emit carefully filtered noise bursts.</p>
+	<p>We derive the target loss and explain how to optimize it. We analyze the influence of the filter length, room impulse response, and emitted signal on the size of the sweet spot, and show extensive simulation. We demonstrate empirically that our method work in real time, in real rooms, under uncertainty. Real recordings are
+available online here and in this paper we show many simulation results.</p>
+	<p>Unlike many soundfield reproduction approaches our method requires a relatively modest number of loudspeakers.</p>
+	<p>Another departure from standard practice is that soundfield reproduction usually degrades in reverberant rooms. In our case, reverberation is precisely what makes the method work. Without echoes it would be impossible.</p>
+	<p>Instead of enforcing ``unintelligibility'' in some optimization loop, we choose the loudspeaker driving signals from a class that makes this implicit.</p>
+	<p>Our method requires us to measure impulse responses only in sweet spots.</p>
+	<p>This has to do with multichannel time reversal.</p>
+
+	<p>We explain our formulation with reference to the below figure. We want to transmit private messages to K users using L loudspeakers placed around the room. To achieve this, we randomly split the messages intended for different users into chunks.</p>
+	<div>
+		<embed src="setup.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" />
+	</div>
+	<p>The table below corresponds to real world results from the above setup.</p>
 	<table border="1" style="margin:0px auto; width:20%">
 		<tr>
 			<td></td>
@@ -16,8 +31,8 @@ title: Sonicdot
 			<td>Delivered</td>
 		</tr>
 		<tr>
-			<td>Zone #1</td>
-			<td><audio controls=""><source src="everything/sounds/news.wav" /></audio></td>
+			<td>Rudolph</td>
+			<td><audio controls=""><source src="everything/sounds/news_clipped.wav" /></audio></td>
 			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
 		</tr>
 		<tr>
@@ -26,7 +41,7 @@ title: Sonicdot
 			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_2_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
 		</tr>
 		<tr>
-			<td>Ref</td>
+			<td>Euridike</td>
 			<td>N/A</td>
 			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
 		</tr>
