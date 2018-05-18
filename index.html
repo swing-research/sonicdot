@@ -3,28 +3,31 @@ layout: default
 title: Sonicdot
 ---
 <div class="blurb">
+	<h1>Sonicdot</h1>
 	<p>This work aims to apply what audio scene analysis teaches us in order to synthesize
 		a particular auditory scene: we want a listener to perceive a sound as intended but only
 		at some designated point in the room. As soon as they move to a different position,
 		the signal becomes unintelligible.</p>
 	<p>Work by Yu-Jeh Liu,  <a href="https://jmcasebeer.github.io/">Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
-	<table border="1" style="margin:0px auto; width:25%">
+	<table border="1" style="margin:0px auto; width:20%">
 		<tr>
 			<td></td>
-			<td>Zone #1</td>
-			<td>Zone #2</td>
-			<td>Reference Point</td>
-		</tr>
-		<tr>
 			<td>Desired</td>
-			<td><audio controls=""><source src="everything/sounds/news.wav" /></audio></td>
-			<td><audio controls=""><source src="everything/sounds/metalking_44k.wav" /></audio></td>
-			<td>N/A</td>
+			<td>Delivered</td>
 		</tr>
 		<tr>
-			<td>Delivered</td>
+			<td>Zone #1</td>
+			<td><audio controls=""><source src="everything/sounds/news.wav" /></audio></td>
 			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
-			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_2_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
+		</tr>
+		<tr>
+			<td>Zone #2</td>
+			<td><audio controls=""><source src="everything/sounds/metalking_44k.wav" /></audio></td>
+			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_2_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
+		</tr>
+		<tr>
+			<td>Ref</td>
+			<td>N/A</td>
 			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
 		</tr>
 	</table>
