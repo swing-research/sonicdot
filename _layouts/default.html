@@ -1,5 +1,11 @@
----
-theme :
-  name : twitter
----
-{% include themes/twitter/default.html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      {{ content }}
+  </body>
+</html>
