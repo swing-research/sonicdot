@@ -3,27 +3,31 @@ layout: default
 title: Sonicdot
 ---
 <div class="blurb">
-	<h3>BAMBOOZLING ECHOES: MULTIPATH-ENABLED PRIVATE AUDIO</h3>
-	<p>We describe a private audio messaging system with a small number of loudspeakers. Our proposed method makes it hard for eavesdroppers to snoop. The method is based on a cartoonish principle of chopping sound up in short segments and emitting different segments in different directions from different loudspeakers. Standard soundfield reproduction methods that emit filtered versions of desired signals produce coherent loudspeaker emissions which when listened to reveal all intended messages. They are also hobbled by echoes. Our proposed method can only work in the presence of echoes. The best thing of all is that it in fact works in real listening situations. In the spirit of reproducible research, the paper is accompanied by the full code to reproduce the results in any room together with the used sounds.</p>
-	<p>Work by Yu-Jeh Liu, <a href="https://jmcasebeer.github.io/"> Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
-	<p>Consider the following communication problem: using a set of loudspeakers we want to transmit an audio message to Jane located at point A and another audio message to John at point B. Jane should not be able to understand John's message, and John should not understand Jane's. Additionally, no one else in the room should understand either message.</p>
-	<p>This problem is related to private sound zones and soundfield control / reproduction. Unlike the classical private sound zones problem, though, we place particular emphasis on the message not being intelligible by anyone but its intended recipient.</p>
-	<p>We now perform a thought experiment: imagine that we divide the message waveform intended for John into short bursts of sound and then assign different bursts to different loudspeakers, effectively emitting each segment in a different direction from a different point in space. Is it possible to somehow cleverly delay and filter those short bursts of sound so that at the intended listening point (in this case point A), with the help of echoes, the segments neatly align to form the desired message. Away from A, however, the segments arrive in a disordered, haphazard manner, rendering the superposition signal unintelligible.
+	<h3>COCKTAILS, BUT NO PARTY: MULTIPATH-ENABLED PRIVATE AUDIO</h3>
+	<p>We describe a private audio messaging system that uses echoes to unscramble messages at a few predetermined locations in a room. The system works by splitting the audio  into short chunks and emitting them from different loudspeakers. The chunks are carefully filtered so that as they echo around the room, they sum to noise everywhere except at a few chosen focusing spots where they exactly reproduce the intended messages. Unlike standard personal audio zones, the proposed method renders sound outside the focusing spots unintelligible. Unlike classical methods that are hobbled by reverberation, our method essentially depends on echoes: the room acts as a mixing system such that at given points we get the desired output. Finally, our method requires a modest number of loudspeakers and only a few impulse response measurements at points where the messages should be delivered. We demonstrate its effectiveness via objective quantitative metrics as well as informal listening experiments in a real room.
 	</p>
-	<p>In this paper we show that this is indeed possible, and we analyze why it works. We show that, surprisingly, performance can be improved if instead of emitting short segments of the intended message, we emit carefully filtered noise bursts.</p>
-	<p>We derive the target loss and explain how to optimize it. We analyze the influence of the filter length, room impulse response, and emitted signal on the size of the sweet spot, and show extensive simulation. We demonstrate empirically that our method work in real time, in real rooms, under uncertainty. Real recordings are
-available online here and in this paper we show many simulation results.</p>
-	<p>Unlike many soundfield reproduction approaches our method requires a relatively modest number of loudspeakers.</p>
-	<p>Another departure from standard practice is that soundfield reproduction usually degrades in reverberant rooms. In our case, reverberation is precisely what makes the method work. Without echoes it would be impossible.</p>
-	<p>Instead of enforcing ``unintelligibility'' in some optimization loop, we choose the loudspeaker driving signals from a class that makes this implicit.</p>
-	<p>Our method requires us to measure impulse responses only in sweet spots.</p>
-	<p>This has to do with multichannel time reversal.</p>
 
-	<p>We explain our formulation with reference to the below figure. We want to transmit private messages to K users using L loudspeakers placed around the room. To achieve this, we randomly split the messages intended for different users into chunks.</p>
+	<p>Work by Yu-Jeh Liu, <a href="https://jmcasebeer.github.io/"> Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
+
+	<p>Consider the following communication problem: using a set of loudspeakers in a room we want to transmit an audio message to Euridike at point A and a different audio message to Rudolph at point B. Euridike should not be able to understand Rudolph's message, nor should Rudolph understand Euridike's. Crucially, no one else in the room should understand any of the messages.</p>
+
+	<p>This problem is related to personal audio zones and soundfield reproduction. However, standard techniques do not emphasize requirement that the message should only be intelligible by its target recipient. On the other hand, we do not require silence away from the focusing spots, only unintelligibility.</p>
+
+	<p>We now perform a thought experiment with reference to the below figure imagine that we divide the message waveform intended for Waldemar into short bursts of sound and emit different bursts from different loudspeakers. Can we somehow cleverly delay and filter those short bursts of sound so that at the intended listening point (in this case point A), with the help of echoes, the segments neatly align to form the desired message, while arriving in a disordered, haphazard manner away from A?</p>
+
+	<div>
+		<embed src="setup.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" />
+	</div>
+
+	<p>In this paper we show that such a feat is indeed possible. We show that the described thought experiment leads to a new method for private audio communication with potential to extend to other wave phenomena. Interestingly, performance can be improved if instead of emitting short segments of the intended message, we emit carefully filtered Gaussian noise bursts.</p>
+
+	<p>For demonstration purposes we now add a refernce microphone which is placed randomly within the described setup.</p>
+
 	<div>
 		<embed src="two_zone.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" />
 	</div>
-	<p>The table below corresponds to our real world results from the above setup. The desired column contains the audio files we wish to deliver to Rudolph and Euridike. The delivered column contains what was recieved by the listeners in our real world tests.</p> 
+	<p>The table below corresponds to real world results from the above setup using our proposed model. The desired column contains the audio we wish to deliver to Rudolph and Euridike. The delivered column contains what was recieved by the listeners in our real world tests.</p>
+	
 	<table border="1" style="margin:0px auto; width:20%">
 		<tr>
 			<td></td>
