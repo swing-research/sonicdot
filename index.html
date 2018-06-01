@@ -3,74 +3,221 @@ layout: default
 title: Sonicdot
 ---
 <div class="blurb">
-	<h3>COCKTAILS, BUT NO PARTY: MULTIPATH-ENABLED PRIVATE AUDIO</h3>
-	<p>We describe a private audio messaging system that uses echoes to unscramble messages at a few predetermined locations in a room. The system works by splitting the audio  into short chunks and emitting them from different loudspeakers. The chunks are carefully filtered so that as they echo around the room, they sum to noise everywhere except at a few chosen focusing spots where they exactly reproduce the intended messages. Unlike standard personal audio zones, the proposed method renders sound outside the focusing spots unintelligible. Unlike classical methods that are hobbled by reverberation, our method essentially depends on echoes: the room acts as a mixing system such that at given points we get the desired output. Finally, our method requires a modest number of loudspeakers and only a few impulse response measurements at points where the messages should be delivered. We demonstrate its effectiveness via objective quantitative metrics as well as informal listening experiments in a real room.
-	</p>
+  <h3>COCKTAILS, BUT NO PARTY: MULTIPATH-ENABLED PRIVATE AUDIO</h3>
 
-	<p>Work by Yu-Jeh Liu, <a href="https://jmcasebeer.github.io/"> Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
+  <hr size="15" noshade>
+  <p>We describe a private audio messaging system that uses echoes to unscramble messages at a few predetermined locations in a room. The system works by splitting the audio into short chunks and emitting them from different loudspeakers. The chunks are
+    carefully filtered so that as they echo around the room, they sum to noise everywhere except at a few chosen focusing spots where they exactly reproduce the intended messages. Unlike standard personal audio zones, the proposed method renders sound
+    outside the focusing spots unintelligible. Unlike classical methods that are hobbled by reverberation, our method essentially depends on echoes: the room acts as a mixing system such that at given points we get the desired output. Finally, our method
+    requires a modest number of loudspeakers and only a few impulse response measurements at points where the messages should be delivered. We demonstrate its effectiveness via objective quantitative metrics as well as informal listening experiments in
+    a real room.
+  </p>
 
-	<p>Consider the following communication problem: using a set of loudspeakers in a room we want to transmit an audio message to Euridike at point A and a different audio message to Rudolph at point B. Euridike should not be able to understand Rudolph's message, nor should Rudolph understand Euridike's. Crucially, no one else in the room should understand any of the messages.</p>
+  <p>Work by Yu-Jeh Liu, <a href="https://jmcasebeer.github.io/"> Jonah Casebeer</a> and <a href="http://dokmanic.ece.illinois.edu/">Ivan Dokmanic</a>.</p>
 
-	<p>This problem is related to personal audio zones and soundfield reproduction. However, standard techniques do not emphasize requirement that the message should only be intelligible by its target recipient. On the other hand, we do not require silence away from the focusing spots, only unintelligibility.</p>
+  <hr size="15" noshade>
 
-	<p>We now perform a thought experiment with reference to the below figure imagine that we divide the message waveform intended for Waldemar into short bursts of sound and emit different bursts from different loudspeakers. Can we somehow cleverly delay and filter those short bursts of sound so that at the intended listening point (in this case point A), with the help of echoes, the segments neatly align to form the desired message, while arriving in a disordered, haphazard manner away from A?</p>
+  <p>Consider the following communication problem: using a set of loudspeakers in a room we want to transmit an audio message to Gwenda at point A and a different audio message to Waldemar at point B. Gwenda should not be able to understand Waldemar's message,
+    nor should Waldemar understand Gwenda's. Crucially, no one else in the room should understand any of the messages.</p>
 
-	<div>
-		<embed src="setup.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" />
-	</div>
+  <p>This problem is related to personal audio zones and soundfield reproduction. However, standard techniques do not emphasize requirement that the message should only be intelligible by its target recipient. On the other hand, we do not require silence
+    away from the focusing spots, only unintelligibility.</p>
 
-	<p>In this paper we show that such a feat is indeed possible. We show that the described thought experiment leads to a new method for private audio communication with potential to extend to other wave phenomena. Interestingly, performance can be improved if instead of emitting short segments of the intended message, we emit carefully filtered Gaussian noise bursts.</p>
+  <p>We now perform a thought experiment with reference to the below figure imagine that we divide the message waveform intended for Waldemar into short bursts of sound and emit different bursts from different loudspeakers. Can we somehow cleverly delay
+    and filter those short bursts of sound so that at the intended listening point (in this case point A), with the help of echoes, the segments neatly align to form the desired message, while arriving in a disordered, haphazard manner away from A?</p>
 
-	<p>For demonstration purposes we now add a reference microphone which is placed randomly within the described setup.</p>
+  <div>
+    <!-- <embed src="two_zone.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" /> -->
+    <img src="two_zone.png" width="80%" height="80%" />
+  </div>
 
-	<div>
-		<embed src="two_zone.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="500px" />
-	</div>
+  <p>In this paper we show that such a feat is indeed possible. We show that the described thought experiment leads to a new method for private audio communication with potential to extend to other wave phenomena. Interestingly, performance can be improved
+    if instead of emitting short segments of the intended message, we emit carefully filtered Gaussian noise bursts.</p>
 
-	<br><p>The tables below correspond to real world results from the above setup using our proposed model. The first table contains the audio we wish to deliver to Rudolph and Euridike.</p><br>
+  <p>For demonstration purposes we now add a reference microphone which is placed randomly within the described setup. With it we seek to verify that eavesdroppers would not be able to understand the messages sent to Waldemar or Gwenda.</p>
 
-	<table border="1" style="margin:0px auto; width:10%">
-		<tr>
-			<td></td>
-			<td>Desired</td>
-			<!-- <td>Delivered</td> -->
-		</tr>
-		<tr>
-			<td>Rudolph</td>
-			<td><audio controls=""><source src="everything/sounds/news_clipped.wav" /></audio></td>
-			<!-- <td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td> -->
-		</tr>
-		<tr>
-			<td>Euridike</td>
-			<td><audio controls=""><source src="everything/sounds/metalking_44k.wav" /></audio></td>
-			<!-- <td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_2_white_chop_6speak_100iter_100000filt.wav" /></audio></td> -->
-		</tr>
-		<tr>
-			<td>Ref</td>
-			<td>N/A</td>
-			<!-- <td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td> -->
-		</tr>
-	</table>
+  <br>
+  <p>First, the results which we desire. The below table contains the desired audio for both Waldemar and Gwenda.</p>
+  <br>
+
+	<table border="1" style="margin:0px auto; width:1%">
+     <tr>
+       <td></td>
+       <td>Desired Audio</td>
+       <!-- <td>Delivered</td> -->
+     </tr>
+     <tr>
+       <td>Waldemar</td>
+       <td>
+         <audio controls="">
+           <source src="everything/sounds/news_clipped.wav" />
+         </audio>
+       </td>
+     </tr>
+     <tr>
+       <td>Gwenda</td>
+       <td>
+         <audio controls="">
+           <source src="everything/sounds/metalking_44k.wav" />
+         </audio>
+       </td>
+     </tr>
+     <tr>
+       <td>Ref</td>
+       <td>N/A</td>
+     </tr>
+   </table>
+
+   <br>
+   <p> Now, the results from simulations and real world testing. The left table contains simulated results for Waldemar and Gwenda. The right table contains real world results. </p>
+   <br>
+
+	 <table border=0>
+	     <tr>
+	       <td>
+	         <table border="1" style="margin:0px auto; width:1%">
+	           <tr>
+	             <td></td>
+	             <td>Simulated Audio</td>
+	           </tr>
+	           <tr>
+	             <td>Waldemar</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/Simulation/News_and_Jonah_1_white_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	           <tr>
+	             <td>Gwenda</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/Simulation/News_and_Jonah_2_white_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	           <tr>
+	             <td>Ref</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/Simulation/News_and_Jonah_ref_1_white_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	         </table>
+
+	       </td>
+	       <td>
+
+	         <table border="1" style="margin:0px auto; width:10%">
+	           <tr>
+	             <td></td>
+	             <td>Real World Audio</td>
+	           </tr>
+	           <tr>
+	             <td>Waldemar</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/6_speaker/100000_filt/jonah_and_news_1_white_chop_6speak_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	           <tr>
+	             <td>Gwenda</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/6_speaker/100000_filt/jonah_and_news_2_white_chop_6speak_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	           <tr>
+	             <td>Ref</td>
+	             <td>
+	               <audio controls="">
+	                 <source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_1_white_chop_6speak_100iter_100000filt.wav" />
+	               </audio>
+	             </td>
+	           </tr>
+	         </table>
+
+	       </td>
+	     </tr>
+	   </table>
+
+	   <br>
+	   <p> We note that these sound mouch better than the below left table where no chopping is performed and the below right table where we don't use white noise as the input.</p>
+	   <br>
+
+		 <table border=0>
+		     <tr>
+		       <td>
+		         <table border="1" style="margin:0px auto; width:10%">
+		           <tr>
+		             <td></td>
+		             <td>No Temporal Chopping</td>
+		           </tr>
+		           <tr>
+		             <td>Waldemar</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/no_chopping/nochop_100k_zone1.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		           <tr>
+		             <td>Gwenda</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/no_chopping/nochop_100k_zone2.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		           <tr>
+		             <td>Ref</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/no_chopping/nochop_100k_ref1.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		         </table>
+
+		       </td>
+		       <td>
+
+		         <table border="1" style="margin:0px auto; width:1%">
+		           <tr>
+		             <td></td>
+		             <td>Speech Inteased of White Noise</td>
+		           </tr>
+		           <tr>
+		             <td>Waldemar</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/random_chopping/randchop_temporalchop_6_2048_100k_zone1.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		           <tr>
+		             <td>Gwenda</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/random_chopping/randchop_temporalchop_6_2048_100k_zone2.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		           <tr>
+		             <td>Ref</td>
+		             <td>
+		               <audio controls="">
+		                 <source src="everything/results/random_chopping/randchop_temporalchop_6_2048_100k_ref1.wav" />
+		               </audio>
+		             </td>
+		           </tr>
+		         </table>
+		       </td>
+		     </tr>
+		   </table>
 
 
-	<br><p>This table contains what was recieved by the Rudolph and Euridike in our real world tests</p><br>
-
-	<table border="1" style="margin:0px auto; width:10%">
-		<tr>
-			<td></td>
-			<td>Delivered</td>
-		</tr>
-		<tr>
-			<td>Rudolph</td>
-			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
-		</tr>
-		<tr>
-			<td>Euridike</td>
-			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_2_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
-		</tr>
-		<tr>
-			<td>Ref</td>
-			<td><audio controls=""><source src="everything/results/6_speaker/100000_filt/jonah_and_news_ref_1_white_chop_6speak_100iter_100000filt.wav" /></audio></td>
-		</tr>
-	</table>
 </div>
